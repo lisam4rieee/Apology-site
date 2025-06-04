@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Forgive Me?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(135deg, #a0d6a0, #caa3e8);
+      overflow: hidden;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 600px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.2s ease-out;
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      color: #4b0082;
+      animation: pulse 2s infinite ease-in-out;
+    }
+    p {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      animation: fadeIn 1.8s ease-in-out;
+    }
+    button {
+      background-color: #7dcfb6;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-family: 'Dancing Script', cursive;
+    }
+    button:hover {
+      background-color: #63bfa2;
+      transform: scale(1.05);
+    }
+    .response {
+      display: none;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      animation: fadeIn 1s ease-out;
+    }
+    .yes {
+      color: #006400;
+    }
+    .no {
+      color: #800000;
+    }
+
+    .floaty {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      animation: float 8s linear infinite;
+      opacity: 0.6;
+      z-index: 1;
+    }
+    .green-heart {
+      background-color: #a0d6a0;
+    }
+    .purple-heart {
+      background-color: #caa3e8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will You Forgive Me?</h1>
+    <p id="apology">
+      My love, I know I've hurt you. I know I made you feel unsure about us, and I made you question the love we share. For that, I'm so sorry. I hate that I gave you even a moment of doubt or pain. I’ve been thinking so much about what I’ve done and how I made you feel. And the truth is — I can’t stop wishing I had done better.
+      <br><br>
+      I want to be better. I want to give you the love you deserve — the kind that heals, supports, and uplifts you every single day. As much as I’ve made you feel bad, I promise I will make you feel good, seen, safe, and adored a hundred times more. You mean the world to me, and I don’t want to lose you. I just want to try again… properly. Please, will you forgive me?
+    </p>
+    <div class="buttons">
+      <button onclick="showResponse(true)">Yes</button>
+      <button onclick="showResponse(false)">No</button>
+    </div>
+    <div id="yesResponse" class="response yes">
+      <p>
+        You said yes... My heart just melted. Thank you, thank you so much. I know sorry isn't magic, but I promise to show you through my actions, my words, and my love, that this time — I’ll get it right. You matter to me more than you know. I love you so, so much. 💚💜
+      </p>
+    </div>
+    <div id="noResponse" class="response no">
+      <p>
+        I understand... This is my doing, and if this is where our story ends, then it’s because of me. You didn’t deserve the pain, and I’ll carry that with me always. I’ll never forget you. I’ll never stop being sorry. And I’ll always, always love you — even from afar.
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating Decorations -->
+  <script>
+    function createFloaty(className) {
+      const floaty = document.createElement('div');
+      floaty.classList.add('floaty', className);
+      floaty.style.left = Math.random() * 100 + 'vw';
+      floaty.style.animationDuration = (6 + Math.random() * 4) + 's';
+      document.body.appendChild(floaty);
+
+      setTimeout(() => floaty.remove(), 10000);
+    }
+
+    setInterval(() => {
+      const type = Math.random() > 0.5 ? 'green-heart' : 'purple-heart';
+      createFloaty(type);
+    }, 500);
+
+    function showResponse(isYes) {
+      document.getElementById('yesResponse').style.display = isYes ? 'block' : 'none';
+      document.getElementById('noResponse').style.display = isYes ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
